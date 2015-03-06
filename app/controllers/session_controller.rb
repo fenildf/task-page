@@ -16,9 +16,9 @@ class SessionController < ApplicationController
     sign_user = SignUser.new(params[:email], params[:password])
     if sign_user.auth?
       self.current_sign_in = sign_user
-      redirect_to "/"
+      render :json => {:status => "ok"}
     else
-      redirect_to "/sign_in"
+      render :status => 401, :text => 401
     end
   end
 
