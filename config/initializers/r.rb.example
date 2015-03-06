@@ -1,0 +1,12 @@
+class R
+  SIGN_USERS = [
+    {
+      :email    => "user1",
+      :password => "12341"
+    },
+    {
+      :email => "user2",
+      :password => "12342"
+    }
+  ]
+end

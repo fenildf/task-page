@@ -31,3 +31,4 @@ config/secrets.yml
 bower.json
 
 config/mongoid.yml
+config/initializers/r.rb

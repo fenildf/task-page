@@ -1,0 +1,8 @@
+= link_to "退出登录", "/sign_out"
+
+- User.all.each do |user|
+  .user
+    = user.name
+    = user.email
+
+= link_to "+ 增加人员", "/users/new"
