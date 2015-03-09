@@ -1,8 +1,10 @@
-= link_to "退出登录", "/sign_out"
+.page-user-list
+  %h2 人员配置
+  .list
+    - User.all.each do |user|
+      .user
+        = user.name
+        = user.email
 
-- User.all.each do |user|
-  .user
-    = user.name
-    = user.email
-
-= link_to "+ 增加人员", "/users/new"
+.action
+  .add-user= link_to "+ 增加人员", "/users/new"
