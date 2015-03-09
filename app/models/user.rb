@@ -5,4 +5,6 @@ class User
   field :name,   type: String
   field :email,  type: String
   field :avatar, type: String
+
+  validates :email, presence: true
 end

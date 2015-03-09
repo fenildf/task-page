@@ -138,4 +138,117 @@ body{
 
     }
   }
+
+  .page-content{
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    h2.title {
+      margin-top: 0;
+      margin-bottom: 30px;
+      font-size: 16px;
+      color: gray;
+      text-shadow: 0 1px #fff;
+    }
+
+    .page-users-form{
+      padding: 50px;
+      background-color: #FFF;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+
+
+      .users{
+        .user{
+          $g: 20px;
+          @include clearfix;
+          margin:0 $g / -2;
+          margin-bottom:10px;
+
+          .icon{
+            @include col(1/12, $gap:$g);
+            i {
+              font-size: 24px;
+              height:35px;line-height: 35px;
+              position:relative;
+              top:3px;
+              float: right;
+              color: $black-30;
+            }
+            &.check i {
+              float: left;
+              color: $area-forest;
+              display: none;
+            }
+          }
+
+          .ipt{
+            @include col(5/12, $gap:$g);
+
+            input[type=text] {
+              display: block;
+              width:100%;
+              font-size: 16px;
+              line-height: 24px;
+              border:0 none;
+              border-bottom:dotted 1px $black-40;
+              box-shadow: none;
+              padding:5px 0;
+              &:focus {
+                outline: 0;
+              }
+            }
+          }
+
+          &.focus {
+            .icon.u i {color:$area-forest;}
+          }
+          &.ok {
+            .icon.check i {display:inherit;}
+          }
+
+        }
+      }
+
+      .submit {
+        margin-top: 40px;
+      }
+    }
+
+    .page-users-list{
+      padding: 50px;
+      background-color: #FFF;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+
+      ul.list{
+        padding: 10px;
+        li{
+          padding: 15px 0; 
+          $g: 20px;
+          list-style-type:none;
+          margin: 0 5px;
+          border-bottom:dotted 1px $black-40;
+
+          .email{
+            @include col(6/12, $gap:$g);
+            &.header{
+              font-weight:bold;
+            }
+          }
+
+          .name{
+            @include col(6/12, $gap:$g);
+            &.header{
+              font-weight:bold;
+            }
+          }
+        }
+      }
+
+      .action{
+        margin-top: 50px;
+      }
+    }
+  }
 }

@@ -1,0 +1,19 @@
+.row
+  .col-pad-8.col-pad-offset-2
+    .page-users-form
+      %h2.title 快速增加人员 …
+      .users
+        - 3.times do
+          .user
+            .icon.u
+              %i.fa.fa-user
+            .ipt.email
+              %input{:type => :text, :placeholder => '邮箱'}
+            .ipt.name
+              %input{:type => :text, :placeholder => '用户名'}  
+            .icon.check
+              %i.fa.fa-check
+
+      .submit
+        %a.save.btn.btn-rounded.btn-bdb-fresh{:href => "/users"} 保存这些人员
+        %a.cancel.btn.btn-rounded.btn-bdb{:href => "/users"} 取消
