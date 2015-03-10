@@ -9,8 +9,11 @@
           .name.header 用户名
         - User.all.each do |user|
           %li.row
+            %img.avatar{:src=> user.gravatar_url}
             .email= user.email
             .name= user.name
+            .action
+              =link_to "删除", "/users/#{user.id}", :method => :delete, :remote => true, :class => 'delete-user', :data => {:confirm => '是否删除?'}
 
       .action
         %a.add-user.btn.btn-rounded.btn-bdb-fresh{:href => "/users/new"}

@@ -14,4 +14,11 @@ class UsersController < ApplicationController
     flash[:success] = "创建了 #{count} 个人员"
     render :json => {:count => count}
   end
+
+  def destroy
+    user = User.find(params[:id])
+
+    user.destroy
+    render :json => {:status => "ok"}
+  end
 end

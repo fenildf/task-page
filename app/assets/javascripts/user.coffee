@@ -118,3 +118,8 @@ caret = (node)->
   sel.moveStart('character', -1)
   sel.text = ""
   return len
+
+
+# 删除 user
+jQuery(document).delegate '.page-users-list li a.delete-user', 'ajax:complete', (evt)->
+  jQuery(this).closest('li').fadeOut()

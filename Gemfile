@@ -58,3 +58,4 @@ gem "mina",
     :tag => "v0.2.0fix"
 
 gem "non-stupid-digest-assets"
+gem 'gravtastic'
