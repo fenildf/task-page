@@ -1,19 +1,23 @@
+- fs = flash[:success]
 .row
   .col-pad-8.col-pad-offset-2
     .page-users-list
       %h2.title 人员配置
-      .flash-success=flash[:success]
+      .row
+        - if !fs.blank?
+          .flash-success= fs
       %ul.list
-        %li.row
-          .email.header 邮箱
-          .name.header 用户名
         - User.all.each do |user|
           %li.row
             %img.avatar{:src=> user.gravatar_url}
-            .email= user.email
-            .name= user.name
+            .info
+              .email= user.email
+              .name= user.name
             .action
-              =link_to "删除", "/users/#{user.id}", :method => :delete, :remote => true, :class => 'delete-user', :data => {:confirm => '是否删除?'}
+              =link_to "任务记录", "/users/#{user.id}", :class => "task btn btn-rounded btn-flat-fresh btn-mini"
+              =link_to "/users/#{user.id}", :method => :delete, :remote => true, :class => 'delete-user btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
+                %i.fa.fa-trash-o
+                %span 删除
 
       .action
         %a.add-user.btn.btn-rounded.btn-bdb-fresh{:href => "/users/new"}

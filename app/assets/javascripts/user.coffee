@@ -122,4 +122,22 @@ caret = (node)->
 
 # 删除 user
 jQuery(document).delegate '.page-users-list li a.delete-user', 'ajax:complete', (evt)->
-  jQuery(this).closest('li').fadeOut()
+  jQuery(this).closest('li').fadeOut().remove();
+
+# 显示 user create flash
+
+jQuery(document).on "page:load", ->
+  $flash_success = jQuery(".page-users-list .flash-success")
+  $flash_success
+    .css
+      "top":-250
+    .animate
+      "top":-177
+    .css
+      "display": "block"
+  setTimeout ->
+      $flash_success
+        .animate
+          "top": -250
+    ,3000
+
