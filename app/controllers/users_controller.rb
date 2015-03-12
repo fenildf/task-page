@@ -21,4 +21,16 @@ class UsersController < ApplicationController
     user.destroy
     render :json => {:status => "ok"}
   end
+
+  def show
+    @user = User.find(params[:id])
+    @year  = params[:year]
+    @month = params[:month]
+    @mday  = params[:mday]
+    if @year.blank?
+      @current_day = Time.now.localtime("+08:00").beginning_of_day
+    else
+      @current_day = Time.new(@year, @month, @mday, 0, 0, 0, "+08:00")
+    end
+  end
 end

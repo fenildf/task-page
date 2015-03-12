@@ -1,6 +1,11 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ActiveTask::UserMethods
+  include RecentTask::UserMethods
+  include TaskSubmit::UserMethods
+  include ChangeEvent::UserMethods
+  include FillingTask::UserMethods
 
   include Gravtastic
   is_gravtastic

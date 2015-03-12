@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/sign_out" => "session#sign_out"
 
   resources :users
+  get "/users/:id(.:format)/:year/:month/:mday" => "users#show"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

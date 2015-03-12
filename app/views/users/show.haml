@@ -1,0 +1,39 @@
+.row
+  .col-pad-8.col-pad-offset-2
+    .page-users-show
+      %h2.title 任务状态记录
+      .time_bar
+        - prev_day = @current_day - 1.day
+        - next_day = @current_day + 1.day
+        %a.prev{:href=>"/users/#{@user.id}/#{prev_day.year}/#{prev_day.month}/#{prev_day.mday}"} 前一天
+        .time= @current_day.strftime("%Y年%-m月%-d日")
+        %a.next{:href=>"/users/#{@user.id}/#{next_day.year}/#{next_day.month}/#{next_day.mday}"} 后一天
+
+      .user-info
+        %img.avatar{:src=> @user.gravatar_url}
+        .name= @user.name
+
+      %h3.title 今天要做的工作
+      .active-tasks.tasks
+        %ul
+          - @user.active_tasks.by_time(@current_day).each do |active_task|
+            %li= active_task.desc
+        .action
+          =link_to "增加","/users/#{@user.id}/active_tasks/new"
+
+      %h3.title 近期要做的工作
+      .recent-tasks.tasks
+        %ul
+          - @user.recent_tasks.by_time(@current_day).each do |recent_task|
+            %li= recent_task.desc
+        .action
+          =link_to "增加","/users/#{@user.id}/recent_tasks/new"
+
+      %h3.title 用于填空的工作
+      .filling-tasks.tasks
+
+      %h3.title 中途发生的变更
+      .change-events.tasks
+
+      %h3.title 提交物记录
+      .task-submits.tasks
