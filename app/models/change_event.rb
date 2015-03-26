@@ -10,7 +10,7 @@ class ChangeEvent
     extend ActiveSupport::Concern 
 
     included do
-      has_many :change_event
+      has_many :change_events
     end
   end
 end

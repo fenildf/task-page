@@ -61,3 +61,4 @@ gem "mina",
 
 gem "non-stupid-digest-assets"
 gem 'gravtastic'
+gem 'simple_form'

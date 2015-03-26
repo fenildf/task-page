@@ -5,6 +5,9 @@ class ActiveTask
 
   field :desc,   type: String
   belongs_to :user
+  
+  validates :desc, presence: true
+  validates :user_id, presence: true
 
   module UserMethods
     extend ActiveSupport::Concern 

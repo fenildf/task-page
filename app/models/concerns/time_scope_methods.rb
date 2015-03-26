@@ -3,6 +3,18 @@ module TimeScopeMethods
 
   included do
     field :time, type: Time
+    attr_accessor :year, :month, :mday
+    validates :time, presence: true
+
+    before_validation(on: :create) do
+      begin
+        if !year.blank? && !month.blank? && !mday.blank?
+          self.time = Time.new(year, month, mday, 0, 0, 0, "+08:00")
+        end
+      rescue
+        self.time = nil
+      end
+    end
 
     # 举例 2015年4月1日
     # by_time(2015,4,1)

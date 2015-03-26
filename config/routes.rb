@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   post "/sign_in" => "session#post_sign_in"
   get "/sign_out" => "session#sign_out"
 
-  resources :users
+  resources :users do
+    resources :active_tasks
+  end
   get "/users/:id(.:format)/:year/:month/:mday" => "users#show"
 
   # Example of regular route:
