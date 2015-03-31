@@ -1,0 +1,10 @@
+.row
+  .col-pad-8.col-pad-offset-2
+    .page-filling-tasks-form
+      %h2.title 增加用于填空的工作
+      = simple_form_for [@user, @filling_task] do |f|
+        = f.input :desc, :as => :text
+        = f.input :year, :as => :hidden, :input_html => { :value => params[:year] }
+        = f.input :month, :as => :hidden, :input_html => { :value => params[:month] }
+        = f.input :mday, :as => :hidden, :input_html => { :value => params[:mday] }
+        = f.button :submit

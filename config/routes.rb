@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :active_tasks
+    resources :recent_tasks
+    resources :filling_tasks
+    resources :change_events
+    resources :task_submits
   end
   get "/users/:id(.:format)/:year/:month/:mday" => "users#show"
 

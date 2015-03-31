@@ -27,7 +27,7 @@
           - @user.recent_tasks.by_time(@current_day).each do |recent_task|
             %li= recent_task.desc
         .action
-          =link_to "增加","/users/#{@user.id}/recent_tasks/new"
+          =link_to "增加","/users/#{@user.id}/recent_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"
 
       %h3.title 用于填空的工作
       .filling-tasks.tasks
@@ -35,7 +35,7 @@
           - @user.filling_tasks.by_time(@current_day).each do |filling_task|
             %li= filling_task.desc
         .action
-          = link_to "增加", "/users/#{@user.id}/filling_tasks/new"
+          = link_to "增加", "/users/#{@user.id}/filling_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"
 
       %h3.title 中途发生的变更
       .change-events.tasks
@@ -43,7 +43,7 @@
           - @user.change_events.by_time(@current_day).each do |change_event|
             %li= change_event.desc
         .action
-          = link_to "增加", "/users/#{@user.id}/change_events/new"
+          = link_to "增加", "/users/#{@user.id}/change_events/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"
 
       %h3.title 提交物记录
       .task-submits.tasks
@@ -51,4 +51,4 @@
           - @user.task_submits.by_time(@current_day).each do |task_submit|
             %li= task_submit.desc
         .action
-          = link_to "增加", "/users/#{@user.id}/task_submits/new"
+          = link_to "增加", "/users/#{@user.id}/task_submits/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"
