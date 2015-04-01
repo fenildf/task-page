@@ -16,4 +16,14 @@ class RecentTasksController < ApplicationController
     end
     redirect_to "/users/#{@user.id}/recent_tasks/new"
   end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @recent_task = @user.recent_tasks.find(params[:id])
+    @recent_task.destroy
+    year = params[:year]
+    month = params[:month]
+    mday = params[:mday]
+    render :json => {:status => "ok"}
+  end
 end

@@ -146,7 +146,7 @@ body{
     h2.title {
       margin-top: 0;
       margin-bottom: 30px;
-      font-size: 16px;
+      font-size: 18px;
       color: gray;
       text-shadow: 0 1px #fff;
     }
@@ -289,10 +289,86 @@ body{
     }
 
     .page-users-show{
-      padding: 50px;
+      $g: 20px;
+      padding: 50px 100px 50px 100px;
       background-color: #FFF;
       border-radius: 3px;
       box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+
+      .time_bar{
+        border-bottom:solid 1px $black-30;
+        .prev{
+          @include col(3/12, $gap:$g); 
+        }
+        .time{
+          @include col(4/12, $gap:$g); 
+        }
+        .next{
+          @include col(3/12, $gap:$g); 
+        }
+        .calendar{
+          @include col(1/12, $gap:$g, $offset: 1/12);
+        }
+      }
+
+      .user-info{
+        margin: 20px 0 50px 5px;
+        @include clearfix;
+        img.avatar{
+          height: 48px;
+          width: 48px;
+          display: block;
+          float: left;
+        }
+        .name{
+          padding: 0 10px;
+          display: block;
+          line-height: 48px;
+          float: left;
+        }
+      }
+
+      .tasks{
+        margin-top: 50px;
+        h3.title{
+          font-size: 18px;
+          padding: 0 50px 5px 20px;
+          text-shadow: 0 1px #fff;
+          border-bottom:solid 1px $black-30;
+        }
+
+        ul{
+          padding: 0px;
+          margin: 5px;
+          li{
+            margin: 5px;
+            padding: 15px;
+            display: block;
+            list-style-type:none;
+            border-bottom:solid 1px $black-10;
+
+            .desc{
+              @include col(10/12, $gap:$g); 
+            }
+            .delete{
+              display: none;
+              @include col(2/12, $gap:$g); 
+            }
+            &:hover{
+              .delete{
+                display: block;
+              }
+            }
+          }
+        }
+
+        .action{
+          margin-top: 20px;
+        }
+
+
+      }
+
     }
   }
 }

@@ -16,4 +16,14 @@ class TaskSubmitsController < ApplicationController
     end
     redirect_to "/users/#{@user.id}/task_submits/new"
   end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @task_submit = @user.task_submits.find(params[:id])
+    @task_submit.destroy
+    year = params[:year]
+    month = params[:month]
+    mday = params[:mday]
+    render :json => {:status => "ok"}
+  end
 end

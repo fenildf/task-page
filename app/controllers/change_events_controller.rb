@@ -16,4 +16,14 @@ class ChangeEventsController < ApplicationController
     end
     redirect_to "/users/#{@user.id}/change_events/new"
   end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @change_event = @user.change_events.find(params[:id])
+    @change_event.destroy
+    year = params[:year]
+    month = params[:month]
+    mday = params[:mday]
+    render :json => {:status => "ok"}
+  end
 end

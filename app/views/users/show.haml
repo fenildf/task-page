@@ -1,54 +1,94 @@
+- prev_day = @current_day - 1.day
+- next_day = @current_day + 1.day
+
 .row
   .col-pad-8.col-pad-offset-2
     .page-users-show
       %h2.title 任务状态记录
-      .time_bar
-        - prev_day = @current_day - 1.day
-        - next_day = @current_day + 1.day
-        %a.prev{:href=>"/users/#{@user.id}/#{prev_day.year}/#{prev_day.month}/#{prev_day.mday}"} 前一天
+      
+      .row.time_bar
+        %a.prev{:href=>"/users/#{@user.id}/#{prev_day.year}/#{prev_day.month}/#{prev_day.mday}"} <前一天
         .time= @current_day.strftime("%Y年%-m月%-d日")
-        %a.next{:href=>"/users/#{@user.id}/#{next_day.year}/#{next_day.month}/#{next_day.mday}"} 后一天
+        %a.next{:href=>"/users/#{@user.id}/#{next_day.year}/#{next_day.month}/#{next_day.mday}"} 后一天>
+        %a.calendar{:herf=>"javascript:;"}
+          .fa.fa-calendar
 
-      .user-info
-        %img.avatar{:src=> @user.gravatar_url}
-        .name= @user.name
+      .row
+        .user-info
+          %img.avatar{:src=> @user.gravatar_url}
+          .name= @user.name
 
-      %h3.title 今天要做的工作
-      .active-tasks.tasks
-        %ul
-          - @user.active_tasks.by_time(@current_day).each do |active_task|
-            %li= active_task.desc
-        .action
-          =link_to "增加","/users/#{@user.id}/active_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"
+        .active-tasks.tasks
+          %h3.title 今天要做的工作
+          %ul
+            - @user.active_tasks.by_time(@current_day).each do |active_task|
+              %li.row
+                .desc= active_task.desc
+                =link_to "/users/#{@user.id}/active_tasks/#{active_task.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
+                  %i.fa.fa-trash-o
+                  %span 删除
 
-      %h3.title 近期要做的工作
-      .recent-tasks.tasks
-        %ul
-          - @user.recent_tasks.by_time(@current_day).each do |recent_task|
-            %li= recent_task.desc
-        .action
-          =link_to "增加","/users/#{@user.id}/recent_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"
+          .action
+            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/active_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
+              .fa.fa-plus
+              %span 增加
 
-      %h3.title 用于填空的工作
-      .filling-tasks.tasks
-        %ul
-          - @user.filling_tasks.by_time(@current_day).each do |filling_task|
-            %li= filling_task.desc
-        .action
-          = link_to "增加", "/users/#{@user.id}/filling_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"
+        .recent-tasks.tasks
+          %h3.title 近期要做的工作
+          %ul
+            - @user.recent_tasks.by_time(@current_day).each do |recent_task|
+              %li.row
+                .desc= recent_task.desc
+                =link_to "/users/#{@user.id}/recent_tasks/#{recent_task.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
+                  %i.fa.fa-trash-o
+                  %span 删除
 
-      %h3.title 中途发生的变更
-      .change-events.tasks
-        %ul
-          - @user.change_events.by_time(@current_day).each do |change_event|
-            %li= change_event.desc
-        .action
-          = link_to "增加", "/users/#{@user.id}/change_events/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"
+          .action
+            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/recent_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
+              .fa.fa-plus
+              %span 增加
 
-      %h3.title 提交物记录
-      .task-submits.tasks
-        %ul
-          - @user.task_submits.by_time(@current_day).each do |task_submit|
-            %li= task_submit.desc
-        .action
-          = link_to "增加", "/users/#{@user.id}/task_submits/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"
+        .filling-tasks.tasks
+          %h3.title 用于填空的工作
+          %ul
+            - @user.filling_tasks.by_time(@current_day).each do |filling_task|
+              %li.row
+                .desc= filling_task.desc
+                =link_to "/users/#{@user.id}/filling_tasks/#{filling_task.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
+                  %i.fa.fa-trash-o
+                  %span 删除
+
+          .action
+            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/filling_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
+              .fa.fa-plus
+              %span 增加
+
+        .change-events.tasks
+          %h3.title 中途发生的变更
+          %ul
+            - @user.change_events.by_time(@current_day).each do |change_event|
+              %li.row
+                .desc= change_event.desc
+                =link_to "/users/#{@user.id}/change_events/#{change_event.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
+                  %i.fa.fa-trash-o
+                  %span 删除
+
+          .action
+            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/change_events/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
+              .fa.fa-plus
+              %span 增加
+
+        .task-submits.tasks
+          %h3.title 提交物记录
+          %ul
+            - @user.task_submits.by_time(@current_day).each do |task_submit|
+              %li.row
+                .desc= task_submit.desc
+                =link_to "/users/#{@user.id}/task_submits/#{task_submit.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
+                  %i.fa.fa-trash-o
+                  %span 删除
+
+          .action
+            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/task_submits/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
+              .fa.fa-plus
+              %span 增加
