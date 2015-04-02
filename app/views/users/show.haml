@@ -4,9 +4,7 @@
 .row
   .col-pad-8.col-pad-offset-2
     .page-users-show
-      .row
-        %h2.title 任务状态记录
-      
+      %h2.row.title 任务状态记录
       .row.time_bar
         %a.prev{:href=>"/users/#{@user.id}/#{prev_day.year}/#{prev_day.month}/#{prev_day.mday}"} 
           %i.fa.fa-chevron-left

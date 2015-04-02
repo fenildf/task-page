@@ -145,7 +145,8 @@ body{
 
     h2.title {
       margin-top: 0;
-      margin-bottom: 30px;
+      margin-bottom: 0;
+      padding-bottom: 30px;
       font-size: 18px;
       color: gray;
       text-shadow: 0 1px #fff;
@@ -286,12 +287,12 @@ body{
       }
 
       .action{
-        margin-top: 50px;
+        margin-top: 30px;
       }
     }
 
     .page-users-show{
-      $g: 20px;
+      $g: 30px;
       padding: 50px 100px 50px 100px;
       background-color: #FFF;
       border-radius: 3px;
