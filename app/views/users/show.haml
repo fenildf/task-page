@@ -4,12 +4,17 @@
 .row
   .col-pad-8.col-pad-offset-2
     .page-users-show
-      %h2.title 任务状态记录
+      .row
+        %h2.title 任务状态记录
       
       .row.time_bar
-        %a.prev{:href=>"/users/#{@user.id}/#{prev_day.year}/#{prev_day.month}/#{prev_day.mday}"} <前一天
-        .time= @current_day.strftime("%Y年%-m月%-d日")
-        %a.next{:href=>"/users/#{@user.id}/#{next_day.year}/#{next_day.month}/#{next_day.mday}"} 后一天>
+        %a.prev{:href=>"/users/#{@user.id}/#{prev_day.year}/#{prev_day.month}/#{prev_day.mday}"} 
+          %i.fa.fa-chevron-left
+          %span 前一天
+        .time= @current_day.strftime("%Y 年 %-m 月 %-d 日")
+        %a.next{:href=>"/users/#{@user.id}/#{next_day.year}/#{next_day.month}/#{next_day.mday}"}
+          %span 前一天
+          %i.fa.fa-chevron-right
         %a.calendar{:herf=>"javascript:;"}
           .fa.fa-calendar
 
