@@ -22,76 +22,16 @@
           .name= @user.name
 
         .active-tasks.tasks
-          %h3.title 今天要做的工作
-          %ul
-            - @user.active_tasks.by_time(@current_day).each do |active_task|
-              %li.row
-                .desc= active_task.desc
-                =link_to "/users/#{@user.id}/active_tasks/#{active_task.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
-                  %i.fa.fa-trash-o
-                  %span 删除
-
-          .action
-            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/active_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
-              .fa.fa-plus
-              %span 增加
+          = render :partial => 'active_tasks/list'
 
         .recent-tasks.tasks
-          %h3.title 近期要做的工作
-          %ul
-            - @user.recent_tasks.by_time(@current_day).each do |recent_task|
-              %li.row
-                .desc= recent_task.desc
-                =link_to "/users/#{@user.id}/recent_tasks/#{recent_task.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
-                  %i.fa.fa-trash-o
-                  %span 删除
-
-          .action
-            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/recent_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
-              .fa.fa-plus
-              %span 增加
+          = render :partial => 'recent_tasks/list'
 
         .filling-tasks.tasks
-          %h3.title 用于填空的工作
-          %ul
-            - @user.filling_tasks.by_time(@current_day).each do |filling_task|
-              %li.row
-                .desc= filling_task.desc
-                =link_to "/users/#{@user.id}/filling_tasks/#{filling_task.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
-                  %i.fa.fa-trash-o
-                  %span 删除
-
-          .action
-            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/filling_tasks/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
-              .fa.fa-plus
-              %span 增加
+          = render :partial => 'filling_tasks/list'          
 
         .change-events.tasks
-          %h3.title 中途发生的变更
-          %ul
-            - @user.change_events.by_time(@current_day).each do |change_event|
-              %li.row
-                .desc= change_event.desc
-                =link_to "/users/#{@user.id}/change_events/#{change_event.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
-                  %i.fa.fa-trash-o
-                  %span 删除
-
-          .action
-            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/change_events/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
-              .fa.fa-plus
-              %span 增加
+          = render :partial => 'change_events/list'
 
         .task-submits.tasks
-          %h3.title 提交物记录
-          %ul
-            - @user.task_submits.by_time(@current_day).each do |task_submit|
-              %li.row
-                .desc= task_submit.desc
-                =link_to "/users/#{@user.id}/task_submits/#{task_submit.id}?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
-                  %i.fa.fa-trash-o
-                  %span 删除
-
-          .action
-            %a.btn.btn-rounded.btn-bdb-fresh{:href => "/users/#{@user.id}/task_submits/new?year=#{@current_day.year}&month=#{@current_day.month}&mday=#{@current_day.mday}"}
-              .fa.fa-plus
-              %span 增加
+          = render :partial => 'task_submits/list'

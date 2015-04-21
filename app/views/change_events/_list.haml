@@ -1,0 +1,17 @@
+%h3.title 中途发生的变更
+%ul
+  - @user.change_events.by_time(@current_day).each do |change_event|
+    = render :partial => 'change_events/li', :locals => {:change_event => change_event}
+
+.action
+  %a.new.btn.btn-rounded.btn-bdb-fresh{:href => "javascript:;"}
+    .fa.fa-plus
+    %span 增加
+  = simple_form_for [@user, ChangeEvent.new], :remote => true do |f|
+    = f.input :desc, :as => :text, :label => false, :input_html => {:cols => '90', :rows => '6'}
+    = f.input :year, :as => :hidden, :input_html => { :value => @current_day.year }
+    = f.input :month, :as => :hidden, :input_html => { :value => @current_day.month }
+    = f.input :mday, :as => :hidden, :input_html => { :value => @current_day.mday }
+    %a.submit.btn.btn-rounded.btn-bdb-fresh{:href => 'javascript:;'} 确定
+    %a.cancel.btn.btn-rounded.btn-bdb{:href => 'javascript:;'} 取消
+

@@ -1,0 +1,5 @@
+%li.row
+  .desc= recent_task.desc
+  =link_to "/users/#{@user.id}/recent_tasks/#{recent_task.id}", :method => :delete, :remote => true, :class => 'delete btn btn-rounded btn-flat-danger btn-mini', :data => {:confirm => '是否删除?'} do
+    %i.fa.fa-trash-o
+    %span 删除

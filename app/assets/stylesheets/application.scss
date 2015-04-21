@@ -375,6 +375,13 @@ body{
 
         .action{
           margin-bottom: 50px;
+
+          form{
+            display: none;
+            textarea{
+              resize: none;
+            }
+          }
         }
 
 

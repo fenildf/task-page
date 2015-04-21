@@ -1,0 +1,16 @@
+%h3.title 近期要做的工作
+%ul
+  - @user.recent_tasks.by_time(@current_day).each do |recent_task|
+    = render :partial => 'recent_tasks/li', :locals => {:recent_task => recent_task}
+
+.action
+  %a.new.btn.btn-rounded.btn-bdb-fresh{:href => "javascript:;"}
+    .fa.fa-plus
+    %span 增加
+  = simple_form_for [@user, RecentTask.new], :remote => true do |f|
+    = f.input :desc, :as => :text, :label => false, :input_html => {:cols => '90', :rows => '6'}
+    = f.input :year, :as => :hidden, :input_html => { :value => @current_day.year }
+    = f.input :month, :as => :hidden, :input_html => { :value => @current_day.month }
+    = f.input :mday, :as => :hidden, :input_html => { :value => @current_day.mday }
+    %a.submit.btn.btn-rounded.btn-bdb-fresh{:href => 'javascript:;'} 确定
+    %a.cancel.btn.btn-rounded.btn-bdb{:href => 'javascript:;'} 取消
